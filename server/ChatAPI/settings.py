@@ -162,3 +162,7 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
 }
+
+
+LOGIN_URL = 'login'
+# LOGOUT_URL = 'user:logout'

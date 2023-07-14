@@ -22,6 +22,14 @@ class ChatRoomView(APIView):
 			serializer.save()
 			return Response(serializer.data, status=status.HTTP_200_OK)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+	
+class OnlineUserView(APIView):
+	def get(self, request, userId):
+		chatRooms = ChatRoom.objects.filter(member=userId)
+		serializer = ChatRoomSerializer(
+			chatRooms, many=True, context={"request": request}
+		)
+		return Response(serializer.data, status=status.HTTP_200_OK)
 
 class MessagesView(ListAPIView):
 	serializer_class = ChatMessageSerializer
